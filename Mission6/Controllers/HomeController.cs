@@ -11,7 +11,11 @@ namespace Mission6.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult GetToKnow()
+        {
+            return View();
+        }
+        public IActionResult EnterMovies()
         {
             return View();
         }
