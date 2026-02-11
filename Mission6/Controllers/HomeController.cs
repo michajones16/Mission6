@@ -1,11 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission6.Models;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Mission6.Controllers
 {
     public class HomeController : Controller
     {
+        private MovieEntryContext _context;
+        public HomeController(MovieEntryContext temp)
+        {
+            _context = temp;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -20,10 +28,13 @@ namespace Mission6.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult MovieEntry(Movie response)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            _context.Movies.Add(response); //Add record to database
+            _context.SaveChanges();
+
+            return View("Confirmation", response);
         }
     }
 }

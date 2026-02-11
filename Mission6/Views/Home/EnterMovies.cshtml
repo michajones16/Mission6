@@ -2,6 +2,8 @@
     ViewData["Title"] = "Enter a Movie";
 }
 
+@model Movie
+
 <h1>Enter a new movie into the collection</h1>
 
 <form method="post">
@@ -29,6 +31,12 @@
         <option value="TV-PG">TV-PG</option>
         <option value="TV-14">TV-14</option>
         <option value="TV-MA">TV-MA</option>
+    </select>
+    <br />
+    <label asp-for="Edited">Edited:</label>
+    <select asp-for="Edited">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
     </select>
     <br />
     <label asp-for="LentTo">Lent To:</label>
