@@ -6,45 +6,84 @@
 
 <h1>Enter a new movie into the collection</h1>
 
-<form method="post">
-    <label asp-for="Title">Title:</label>
-    <input asp-for="Title" />
-    <br />
-    <label asp-for="Category">Category:</label>
-    <input asp-for="Category" />
-    <br />
-    <label asp-for="Year">Year:</label>
-    <input type="number" asp-for="Year" />
-    <br />
-    <label asp-for="Director">Director:</label>
-    <input asp-for="Director" />
-    <br />
-    <label asp-for="Rating">Rating:</label>
-    <select asp-for="Rating">
-        <option value="G">G</option>
-        <option value="PG">PG</option>
-        <option value="PG-13">PG-13</option>
-        <option value="R">R</option>
-        <option value="TV-Y">TV-Y</option>
-        <option value="TV-Y7">TV-Y7</option>
-        <option value="TV-G">TV-G</option>
-        <option value="TV-PG">TV-PG</option>
-        <option value="TV-14">TV-14</option>
-        <option value="TV-MA">TV-MA</option>
-    </select>
-    <br />
-    <label asp-for="Edited">Edited:</label>
-    <select asp-for="Edited">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
-    <br />
-    <label asp-for="LentTo">Lent To:</label>
-    <input asp-for="LentTo" />
-    <br />
-    <label asp-for="Notes">Notes:</label>
-    <input asp-for="Notes" />
-    <br />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
 
-    <button type="submit">Add Movie</button>
-</form>
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Add New Movie</h4>
+                </div>
+                <div class="card-body">
+
+                    <form method="post">
+
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label">Title</label>
+                            <input asp-for="Title" class="form-control" placeholder="Enter movie title" required/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label asp-for="Category" class="form-label">Category</label>
+                                <input asp-for="Category" class="form-control" required/>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Year" class="form-label">Year</label>
+                                <input type="number" asp-for="Year" class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Director" class="form-label">Director</label>
+                            <input asp-for="Director" class="form-control" required/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Rating" class="form-label">Rating</label>
+                                <select asp-for="Rating" class="form-select" required>
+                                    <option value="" selected disabled>Select Rating...</option>
+                                    <option value="G">G</option>
+                                    <option value="PG">PG</option>
+                                    <option value="PG-13">PG-13</option>
+                                    <option value="R">R</option>
+                                    <option value="TV-Y">TV-Y</option>
+                                    <option value="TV-Y7">TV-Y7</option>
+                                    <option value="TV-G">TV-G</option>
+                                    <option value="TV-PG">TV-PG</option>
+                                    <option value="TV-14">TV-14</option>
+                                    <option value="TV-MA">TV-MA</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Edited" class="form-label">Edited</label>
+                                <select asp-for="Edited" class="form-select">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LentTo" class="form-label">Lent To (Optional)</label>
+                            <input asp-for="LentTo" class="form-control" placeholder="Name of person" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Notes" class="form-label">Notes</label>
+                            <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Add Movie</button>
+                            <a href="/" class="btn btn-secondary">Cancel</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

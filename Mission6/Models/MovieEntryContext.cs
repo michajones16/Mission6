@@ -6,7 +6,6 @@ namespace Mission6.Models
     {
         public MovieEntryContext(DbContextOptions<MovieEntryContext> options) : base(options)
         {
-
         }
 
         public DbSet<Movie> Movies { get; set; }
