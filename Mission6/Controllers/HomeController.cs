@@ -24,19 +24,44 @@ namespace Mission6.Controllers
             return View();
         }
 
+        public IActionResult MovieList()
+        {
+            var movies = _context.Movies
+                .Include(x => x.Category)
+                .OrderBy(x => x.Title).ToList();
+
+            return View(movies);
+        }
+
         [HttpGet]
         public IActionResult MovieEntry()
         {
-            return View("EnterMovies");
+            ViewBag.Categories = _context.Categories
+               .OrderBy(x => x.CategoryName)
+               .ToList();
+
+            return View("EnterMovies", new Movie());
         }
 
         [HttpPost]
         public IActionResult MovieEntry(Movie response)
         {
-            _context.Movies.Add(response); //Add record to database
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(response); //Add record to database
+                _context.SaveChanges();
 
-            return View("Confirmation", response);
+                return View("Confirmation", response);
+            }
+            else
+            {
+                ViewBag.Majors = _context.Categories
+                    .OrderBy(x => x.CategoryName)
+                    .ToList();
+
+                return View(response);
+            }
+
         }
     }
 }
