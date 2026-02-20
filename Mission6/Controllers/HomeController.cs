@@ -33,8 +33,7 @@ namespace Mission6.Controllers
             return View(movies);
         }
 
-        [HttpGet]
-        public IActionResult MovieEntry()
+        public IActionResult EnterMovies()
         {
             ViewBag.Categories = _context.Categories
                .OrderBy(x => x.CategoryName)
@@ -44,7 +43,7 @@ namespace Mission6.Controllers
         }
 
         [HttpPost]
-        public IActionResult MovieEntry(Movie response)
+        public IActionResult EnterMovies(Movie response)
         {
             if (ModelState.IsValid)
             {
@@ -55,13 +54,52 @@ namespace Mission6.Controllers
             }
             else
             {
-                ViewBag.Majors = _context.Categories
+                ViewBag.Categories = _context.Categories
                     .OrderBy(x => x.CategoryName)
                     .ToList();
 
                 return View(response);
             }
 
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordtoEdit = _context.Movies
+                .Single(x => x.MovieID == id);
+
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View("EnterMovies", recordtoEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movie updatedInfo)
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordtoDelete = _context.Movies
+                .Single(x => x.MovieID == id);
+
+            return View(recordtoDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Movie recordtoDelete)
+        {
+            _context.Movies.Remove(recordtoDelete);
+            _context.SaveChanges();
+            return RedirectToAction("MovieList");
         }
     }
 }

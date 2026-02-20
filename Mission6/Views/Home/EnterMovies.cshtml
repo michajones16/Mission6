@@ -15,8 +15,11 @@
                     <h4 class="mb-0">Add New Movie</h4>
                 </div>
                 <div class="card-body">
+                    <div style="color:red;" asp-validation-summary="All"></div>
 
                     <form method="post">
+
+                        <input type="hidden" asp-for="MovieID" />
 
                         <div class="mb-3">
                             <label asp-for="Title" class="form-label">Title</label>
@@ -25,6 +28,7 @@
 
                         <div class="row">
                             <div class="col-md-8 mb-3">
+                                <label asp-for="CategoryId" class="form-label">Category</label>
                                 <select asp-for="CategoryId" class="form-select">
                                     <option value="">Select a Category</option>
                                     @foreach (Category c in ViewBag.Categories)
@@ -41,13 +45,13 @@
 
                         <div class="mb-3">
                             <label asp-for="Director" class="form-label">Director</label>
-                            <input asp-for="Director" class="form-control" required/>
+                            <input asp-for="Director" class="form-control"/>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label asp-for="Rating" class="form-label">Rating</label>
-                                <select asp-for="Rating" class="form-select" required>
+                                <select asp-for="Rating" class="form-select">
                                     <option value="" selected disabled>Select Rating...</option>
                                     <option value="G">G</option>
                                     <option value="PG">PG</option>
@@ -61,16 +65,18 @@
                                     <option value="TV-MA">TV-MA</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label asp-for="Edited" class="form-label">Edited</label>
-                                <select asp-for="Edited" class="form-select">
+                                <select asp-for="Edited" class="form-select" required>
+                                    <option value="" selected disabled>Select Option</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label asp-for="CopiedToPlex" class="form-label">Copied to Plex</label>
-                                <select asp-for="CopiedToPlex" class="form-select">
+                                <select asp-for="CopiedToPlex" class="form-select" required>
+                                    <option value="" selected disabled>Select Option</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
@@ -88,7 +94,7 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Add Movie</button>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Movie</button>
                             <a href="/" class="btn btn-secondary">Cancel</a>
                         </div>
 

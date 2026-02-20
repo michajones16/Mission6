@@ -10,7 +10,7 @@ using Mission6.Models;
 namespace Mission6.Migrations
 {
     [DbContext(typeof(MovieEntryContext))]
-    [Migration("20260218173039_Initial")]
+    [Migration("20260220033215_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
